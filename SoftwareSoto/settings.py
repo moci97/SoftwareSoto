@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'persona',
 ]
 
 MIDDLEWARE = [
@@ -76,9 +77,13 @@ WSGI_APPLICATION = 'SoftwareSoto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR,'bd.sqlite3')
-
+        'NAME': 'bdtest',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'root',
+        'PASSWORD': '',
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
 

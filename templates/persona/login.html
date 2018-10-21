@@ -1,16 +1,16 @@
 {% extends '../base/base.html' %}
 {% load static %}
 
-    {% block content %}
-        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <div class="container contenedor">
         <div class="text-center m-auto caja-imagen">
             <img src="{% static 'imagenes/login.png' %}" alt="" class="img-fluid">
         </div>
         <hr class="hr">
         {% if error %}
-           <p class="alert alert-danger">{{ error }}</p>
-       {% endif%}
+            <p class="alert alert-danger">{{ error }}</p>
+        {% endif %}
         <form method="POST" action="{% url "login" %}" class="formulario">
             {% csrf_token %}
             <div class="form-group">
@@ -24,9 +24,11 @@
             <div class="checkbox">
                 <label><input type="checkbox">Recuérdame</label>
             </div>
-            <div class="text-center"> <button type="submit" class="btn btn-outline-primary badge-pill boton-login">Ingresar</button> </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary badge-pill boton-login">Ingresar</button>
+            </div>
         </form>
 
     </div>
-    {% endblock %}
+{% endblock %}
 

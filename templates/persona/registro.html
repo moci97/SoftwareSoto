@@ -1,4 +1,4 @@
-{% extends '../base/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -98,7 +98,8 @@
 
                     <td>
                         <div class="check text-center" id="check1">
-                            <input class="checkbox1" type="checkbox" name="checkbox" id="checkbox1{{ per }}">
+                            <input class="checkbox1" type="checkbox" name="persona_pk" id="checkbox1{{ per }}"
+                                           value="{{ per.pk }}">
                             <label class="selec" for="checkbox1{{ per }}" >Seleccionar</label>
                         </div>
                     </td>

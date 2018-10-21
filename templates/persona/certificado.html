@@ -1,0 +1,51 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+    {% load static %}
+    {% csrf_token %}
+    <link rel="stylesheet" href="{% static 'css/certificado.css' %}">
+
+    <form method="post"  ">
+    <div class="container caja-certificado">
+        <div class="row header-certificado">
+            <div class="col-3 text-center">
+                <<img src="{% static 'imagenes/logo-unfv.png' %}" alt="" class="logo-unfv img-fluid">
+            </div>
+            <div class="col-6 align-self-center">
+                <p class="text-center u-nacional">Universidad Nacional</p>
+                <p class="text-center federico">Federico Villarreal</p>
+                <hr class="certificado-hr">
+                <p class="text-center lema">Profesionales Formando Profesionales</p>
+            </div>
+            <div class="col-3 text-center align-self-center">
+                <img src="{% static 'imagenes/logo-fiis.jpg' %}" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-md-3 text-center otorgado">Otorgado a:</div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-md-3 text-center datos"></div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-md-3 text-center"><hr></div>
+        </div>
+        <div class="row">
+            <div class="col text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore consequatur similique, minima sunt velit inventore cupiditate. Minima velit possimus sed deserunt a repellat, delectus iste ullam doloribus! Quia, quibusdam at.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore consequatur similique, minima sunt velit inventore cupiditate. Minima velit possimus sed deserunt a repellat, delectus iste ullam doloribus! Quia, quibusdam at.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore consequatur similique, minima sunt velit inventore cupiditate. Minima velit possimus sed deserunt a repellat, delectus iste ullam doloribus! Quia, quibusdamMinima velit possimus sed deserunt a repellat, delectus iste ullam doloribus! Quia, quibusdam doloribus! at.</div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-center"> <div class="firma-persona"></div> </div>
+            <div class="col-4 offset-md-4 text-center"> <div class="firma-persona"></div> </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-center"><hr class="hr-firma"></div>
+            <div class="col-4 offset-md-4 text-center"><hr class="hr-firma"></div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-center"> <div>Lorem ipsum dolor sit amet.</div> </div>
+            <div class="col-4 offset-md-4 text-center"> <div>Lorem ipsum dolor sit amet.</div> </div>
+        </div>
+    </div>
+    </form>
+
+{% endblock %}

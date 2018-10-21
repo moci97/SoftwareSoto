@@ -1,0 +1,116 @@
+{% extends '../base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/tabla.css' %}">
+    <form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="card box1">
+      <div class="card-header titulo-card text-center">
+          <h2>Formulario de Documentos</h2>
+
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputUniversidad" class="label">Universidad</label>
+          <select id="inputUniversidad" class="form-control">
+            <option selected>Elegir...</option>
+            <option>Universidad Nacional Federico Villarreal</option>
+            <option>Universidad Nacional de Ingeniería</option>
+            <option>Universidad Nacional Mayor de San Marcos</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputFacultad" class="label">Facultad</label>
+          <select id="inputFacultad" class="form-control">
+            <option selected>Elegir...</option>
+            <option>FIIS</option>
+            <option>FIGAE</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEscuela" class="label">Escuela</label>
+          <select id="inputEscuela" class="form-control">
+            <option selected>Elegir...</option>
+            <option>Ingenieria de sistemas</option>
+            <option>Ingenieria de transportes</option>
+            <option>Ingenieria insdustrial</option>
+            <option>Ingenieria agroindustrial</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputingreso" class="label">Año de ingreso</label>
+          <select id="inputingreso" class="form-control">
+            <option selected>Elegir...</option>
+            <option>2017</option>
+            <option>2016</option>
+            <option>2015</option>
+            <option>2014</option>
+            <option>2013</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputtipo" class="label">Tipo</label>
+          <select id="inputtipo" class="form-control">
+            <option selected>Elegir...</option>
+            <option>Estudiante</option>
+            <option>Egresado</option>
+            <option>Docente</option>
+            <option>Invitado</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputgrado" class="label">Grado de estudios</label>
+          <select id="inputgrado" class="form-control">
+            <option selected>Elegir...</option>
+            <option>Pregrado</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+
+          </select>
+        </div>
+      </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Codigo</th>
+                    <th scope="col" class="text-center">Apellidos y Nombres</th>
+                    <th scope="col" class="text-center">Seleccione</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for per in persona %}
+                <tr>
+                    <td class="text-center">{{ per.id }}</td>
+                    <td class="text-center">{{ per.id_persona}}</td>
+                    <td class="text-center">{{ per.nombre }}</td>
+
+
+                    <td>
+                        <div class="check text-center" id="check1">
+                            <input class="checkbox1" type="checkbox" name="checkbox" id="checkbox1{{ per }}">
+                            <label class="selec" for="checkbox1{{ per }}" >Seleccionar</label>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="text-center"> <button id="enviar" type="submit" class="btn btn-outline-primary imprimir">ENVIAR DATOS</button> </div>
+    </div>
+
+    </div>
+  </form>
+
+{% endblock %}

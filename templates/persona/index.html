@@ -1,1 +1,18 @@
-{% extends 'base/base.html' %}
+{% extends '../base/base.html' %}
+
+
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/portada.css' %}">
+    <div class="cuerpo">
+        <img src="{% static 'imagenes/portada.jpg' %}" alt="">
+        <div class="content">
+            <h2 class="display-4 content-titulo">Bienvenidos al Sistema de Impresión</h2>
+            <div class="text-center"><div class="ingresar-portada animated flash btn btn-primary badge-pill"> <a href="login/" >INGRESAR</a> </div></div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

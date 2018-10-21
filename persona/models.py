@@ -40,3 +40,8 @@ class Persona(models.Model):
     id_tipo = models.ForeignKey(TipoPersona, on_delete=models.CASCADE, null=True, blank=True)
     id_grado = models.ForeignKey(Grado, on_delete=models.CASCADE, null=True, blank=True)
     id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return '{}'.format(self.nombre, self.id_persona)
+
+

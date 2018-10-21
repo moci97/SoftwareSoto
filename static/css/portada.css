@@ -1,0 +1,33 @@
+.cuerpo{
+    width: 1024px;
+    height: 636px;
+    background: black;
+}
+.cuerpo img{
+    width: 1024px;
+    height: 636px;
+    opacity: 0.4;  
+    position: absolute;
+}
+.content{
+    position: relative;
+}
+.content-titulo{
+    color: #ffF;
+    text-align: center;
+    padding: 150px;
+    font-weight: 800;
+    font-size: 60px;
+}
+.ingresar-portada{
+    animation-delay: 1s;
+    animation-duration: 1.7s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 20px;
+}
+.ingresar-portada a{
+    text-decoration: none;
+    color:#fff;
+}

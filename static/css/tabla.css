@@ -23,9 +23,10 @@
     display: inline-block;
     background: none;
     border: 3px solid #0074d9;
-    position: absolute;    
+    position: absolute;
     left: 17px;
     top:8px;
+    color:#284856;
 }
 .check input[type="checkbox"]:checked + label{
     padding: 5px 15px;
@@ -45,5 +46,45 @@
 }
 .imprimir:active {
     transform: translateY(10px) ;
-    
+
+}
+.color {
+
+    color: #3589AB  ;
+    font-family: "Palatino", sans-serif;
+    font-size: 270%;
+    margin-top: 2%
+
+
+}
+
+.uno {
+ color: #213A80 ;
+ font-family: "Palatino", sans-serif;
+padding-left: 40%;
+padding-top: 3%;
+font-size: 135%;
+
+}
+.dos
+{
+    padding-left: 40%;
+color: #213A80 ;
+ font-family: "Palatino", sans-serif;
+ font-size: 135%;
+ padding-top: 3%;
+}
+.f {
+    background: #CDCDDF  ;
+    margin-bottom: 2%;
+}
+.tres {
+    padding-top: 8%;
+}
+.cuatro {
+    padding-top: 2%
+}
+.cinco {
+  margin-right: 13%;
+  margin-left: 10%
 }

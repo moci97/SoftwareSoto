@@ -9,22 +9,22 @@
     {{ form.as_p }}
 
     <div class="card box1">
-      <div class="card-header titulo-card text-center">
-          <h2>Formulario de Documentos</h2>
+      <div class="card-header titulo-card text-center f">
+          <h2 class="color">Formulario de Documentos</h2>
 
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputUniversidad" class="label">Universidad</label>
+      </div >
+      <div class="row">
+        <div class="form-group offset-lg-2 col-lg-4 cinco" style="padding-left: 0;>
+          <label for="inputUniversidad" class="label uno">Universidad</label>
           <select id="inputUniversidad" class="form-control">
-            <option selected>Elegir...</option>
+            <option  selected >Elegir...</option>
             <option>Universidad Nacional Federico Villarreal</option>
             <option>Universidad Nacional de Ingeniería</option>
             <option>Universidad Nacional Mayor de San Marcos</option>
           </select>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputFacultad" class="label">Facultad</label>
+        <div class="form-group col-lg-4 " style="padding-left: 0;">
+          <label for="inputFacultad" class="label dos">Facultad</label>
           <select id="inputFacultad" class="form-control">
             <option selected>Elegir...</option>
             <option>FIIS</option>
@@ -33,8 +33,8 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEscuela" class="label">Escuela</label>
+        <div class="form-group offset-lg-2 col-lg-4 ">
+          <label for="inputEscuela" class="label uno">Escuela</label>
           <select id="inputEscuela" class="form-control">
             <option selected>Elegir...</option>
             <option>Ingenieria de sistemas</option>
@@ -43,8 +43,8 @@
             <option>Ingenieria agroindustrial</option>
           </select>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputingreso" class="label">Año de ingreso</label>
+        <div class="form-group col-lg-4  ">
+          <label for="inputingreso" class="label dos">Año de ingreso</label>
           <select id="inputingreso" class="form-control">
             <option selected>Elegir...</option>
             <option>2017</option>
@@ -56,18 +56,18 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputtipo" class="label">Tipo</label>
+        <div class="form-group offset-lg-2 col-lg-4 ">
+          <label for="inputtipo" class="label uno">Tipo</label>
           <select id="inputtipo" class="form-control">
-            <option selected>Elegir...</option>
-            <option>Estudiante</option>
-            <option>Egresado</option>
+            <option selected class="uno">Elegir...</option>
+            <option >Estudiante</option>
+            <option >Egresado</option>
             <option>Docente</option>
-            <option>Invitado</option>
+            <option >Invitado</option>
           </select>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputgrado" class="label">Grado de estudios</label>
+        <div class="form-group col-lg-4 ">
+          <label for="inputgrado" class="label dos">Grado de estudios</label>
           <select id="inputgrado" class="form-control">
             <option selected>Elegir...</option>
             <option>Pregrado</option>
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-    <div class="container">
+    <div class="container tres">
         <table class="table">
             <thead>
                 <tr>
@@ -108,10 +108,11 @@
 
             </tbody>
         </table>
-        <div class="text-center"> <button id="enviar" type="submit" class="btn btn-outline-primary imprimir">ENVIAR DATOS</button> </div>
+        <div class="text-center cuatro"> <button id="enviar" type="submit" class="btn btn-outline-primary imprimir">ENVIAR DATOS</button> </div>
     </div>
 
     </div>
   </form>
+
 
 {% endblock %}

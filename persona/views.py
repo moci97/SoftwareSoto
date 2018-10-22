@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
-
+import pdfkit
+from django_pdfkit import PDFView
 from persona.models import Persona
 
 
@@ -24,8 +25,6 @@ def validacion_login(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/login/datos/get_persona/')
-
-
         else:
             return render(request, 'persona/login.html', {'error': 'Invalid username and password'})
     return render(request, 'persona/login.html')
@@ -36,20 +35,28 @@ def certificado(request):
     print("=====================")
     print(str(personas))
     print("=====================")
+    pdfkit.from_file('persona/certificado.html', 'persona/certificado.pdf')
     return render(request, 'persona/certificado.html')
 
 
-class Certificados(TemplateView):
-
+class Certificado(PDFView):
     template_name = "persona/certificado.html"
 
     def get_context_data(self, **kwargs):
-        context = super(Certificados, self).get_context_data(**kwargs)
-        personas = Persona.objects.filter(pk__in=self.request.session['personas_pk']).values('nombre',
-                                                                                             'id_especialidad__id_facultad__nomb_uni')
-
-        context['persona'] = personas
+        context = super(Certificado, self).get_context_data(**kwargs)
+        context['persona'] = Persona.objects.filter(pk__in=self.request.session['personas_pk'])
         return context
+
+
+# class Certificados(PDFView):
+#     template_name = "persona/certificado.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(Certificados, self).get_context_data(**kwargs)
+#         personas = Persona.objects.filter(pk__in=self.request.session['personas_pk']).values('nombre',
+#                                                                                              'id_especialidad__id_facultad__nomb_uni')
+#         context['persona'] = personas
+#         return context
 
 
 class GetPersonas(TemplateView):
@@ -62,4 +69,4 @@ class GetPersonas(TemplateView):
 
     def post(self, request):
         self.request.session['personas_pk'] = self.request.POST.getlist('persona_pk')
-        return HttpResponseRedirect('/login/datos/certificado/')
+        return HttpResponseRedirect('/certificado/')

@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     $(".selec").click(function () {
@@ -16,7 +14,18 @@ $(document).ready(function () {
         }
     });
 
+    $('#enviar').click(function () {
 
+        if (!$('#inputUniversidad').val()) {
+            alert("Error, Selecciona una universidad");
+        }
+        if (!$('#inputFacultad').val()) {
+            alert("Error, Selecciona una facultad");
+        }
+        if (!$('#inputFacultad').val()) {
+            alert("Error, Selecciona una facultad");
+        }
+    })
 });
 
 

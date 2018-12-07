@@ -1,118 +1,176 @@
 {% extends 'base/base.html' %}
-{% load static %}
+{% load staticfiles %}
 
 {% block content %}
 
     <link rel="stylesheet" href="{% static 'css/tabla.css' %}">
     <form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
+        {% csrf_token %}
+        {{ form.as_p }}
 
-    <div class="card box1">
-      <div class="card-header titulo-card text-center f">
-          <h2 class="color">Formulario de Documentos</h2>
+        <div class="card titulo container">
+            <div class="card-header titulo-card text-center titulo ">
+                <h2 class="color">Formulario de Documentos</h2>
+            </div>
 
-      </div >
-      <div class="row">
-        <div class="form-group offset-lg-2 col-lg-4 cinco" style="padding-left: 0;>
-          <label for="inputUniversidad" class="label uno">Universidad</label>
-          <select id="inputUniversidad" class="form-control">
-            <option  selected >Elegir...</option>
-            <option>Universidad Nacional Federico Villarreal</option>
-            <option>Universidad Nacional de Ingeniería</option>
-            <option>Universidad Nacional Mayor de San Marcos</option>
-          </select>
+            <div class="card-body form-row">
+
+                <div class="form-group col-lg-6 div_opc etiqueta">
+                    <label for="inputUniversidad" class="label ">Universidad</label>
+                    <select id="inputUniversidad" name="universidad_pk" class="form-control" >
+                        <option value="" selected>Elegir...</option>
+                        {% for uni in universidad %}
+                            <option value="{{ uni.pk }}">{{ uni.nomb_facultad }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6 div_opc etiqueta">
+                    <label for="inputFacultad" class="label">Facultad</label>
+                    <select id="inputFacultad" name="facultad_pk" class="form-control">
+                        <option value="" selected>Elegir...</option>
+                        {% for facu in facultad %}
+                            <option value="{{ facu.pk }}">{{ facu.nomb_uni }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6 div_opc">
+                    <label for="inputEscuela" class="label etiqueta">Escuela</label>
+                    <select id="inputEscuela" name="especialidad_pk" class="form-control">
+                        <option selected>Elegir...</option>
+                        {% for espec in especialidad %}
+                            <option value="{{ espec.pk }}" >{{ espec.nombre_esp }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-lg-6  div_opc">
+                    <label for="inputingreso" class="label etiqueta">Año de ingreso</label>
+                    <select id="inputingreso" class="form-control">
+                        <option selected>Elegir...</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6 div_opc">
+                    <label for="inputtipo" class="etiqueta">Tipo</label>
+                    <select id="inputtipo" class="form-control">
+                        <option selected>Elegir...</option>
+                        {% for tpersona in tipo_persona %}
+                            <option>{{ tpersona.nombre_tipo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-lg-6 div_opc">
+                    <label for="inputgrado" class="etiqueta">Grado de estudios</label>
+                    <select id="inputgrado" class="form-control">
+                        <option selected>Elegir...</option>
+                        {% for gr in grado %}
+                            <option>{{ gr.nombre_grado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <div class="container my-5">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Codigo</th>
+                            <th scope="col" class="text-center">Apellidos y Nombres</th>
+                            <th scope="col" class="text-center">Seleccione</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for per in persona %}
+                            <tr>
+                                <td class="text-center">{{ per.id }}</td>
+                                <td class="text-center">{{ per.id_persona }}</td>
+                                <td class="text-center">{{ per.nombre }}</td>
+
+
+                                <td>
+                                    <div class="check text-center" id="check1">
+                                        <input class="checkbox1" type="checkbox" name="persona_pk"
+                                               id="checkbox1{{ per }}"
+                                               value="{{ per.pk }}">
+                                        <label class="selec" for="checkbox1{{ per }}">Seleccionar</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="text-center cuatro my-5">
+                        <button id="enviar" type="submit" class="btn btn-outline-primary imprimir">ENVIAR DATOS</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-lg-4 " style="padding-left: 0;">
-          <label for="inputFacultad" class="label dos">Facultad</label>
-          <select id="inputFacultad" class="form-control">
-            <option selected>Elegir...</option>
-            <option>FIIS</option>
-            <option>FIGAE</option>
-          </select>
+
+    </form>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+{% block footer %}
+
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <footer class="section footer-classic context-dark bg-image" style="background: #2d3246;">
+        <div class="container">
+            <div class="row row-30">
+                <div class="col-md-4 col-xl-5">
+                    <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
+                                                                                 src="images/agency/logo-inverse-140x37.png"
+                                                                                 alt="" width="140" height="37"
+                                                                                 srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                        <p>Somos una empresea que facilita tus procesos administrativos con la automatización de procesos</p>
+                        <!-- Rights-->
+                        <p class="rights"><span>©  </span><span class="copyright-year">2018</span><span> </span><span>Nuestra Compañia Villareal</span><span>. </span><span></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contáctanos</h5>
+                    <dl class="contact-list">
+                        <dt>Direccion:</dt>
+                        <dd>Unfv Anexo 7</dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>E-mail:</dt>
+                        <dd><a href="mailto:#">grupo_software@gmail.com</a></dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>Teléfonos:</dt>
+                        <dd><a href="tel:#">+91 7568543012</a> <span>or</span> <a href="tel:#">+91 9571195353</a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <h5>Links</h5>
+                    <ul class="nav-list">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group offset-lg-2 col-lg-4 ">
-          <label for="inputEscuela" class="label uno">Escuela</label>
-          <select id="inputEscuela" class="form-control">
-            <option selected>Elegir...</option>
-            <option>Ingenieria de sistemas</option>
-            <option>Ingenieria de transportes</option>
-            <option>Ingenieria insdustrial</option>
-            <option>Ingenieria agroindustrial</option>
-          </select>
+        <div class="row no-gutters social-container">
+            <div class="col"><a class="social-inner" href="#"><span
+                    class="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
+            <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-instagram"></span><span>instagram</span></a>
+            </div>
+            <div class="col"><a class="social-inner" href="#"><span
+                    class="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
+            <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-youtube-play"></span><span>google</span></a>
+            </div>
         </div>
-        <div class="form-group col-lg-4  ">
-          <label for="inputingreso" class="label dos">Año de ingreso</label>
-          <select id="inputingreso" class="form-control">
-            <option selected>Elegir...</option>
-            <option>2017</option>
-            <option>2016</option>
-            <option>2015</option>
-            <option>2014</option>
-            <option>2013</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group offset-lg-2 col-lg-4 ">
-          <label for="inputtipo" class="label uno">Tipo</label>
-          <select id="inputtipo" class="form-control">
-            <option selected class="uno">Elegir...</option>
-            <option >Estudiante</option>
-            <option >Egresado</option>
-            <option>Docente</option>
-            <option >Invitado</option>
-          </select>
-        </div>
-        <div class="form-group col-lg-4 ">
-          <label for="inputgrado" class="label dos">Grado de estudios</label>
-          <select id="inputgrado" class="form-control">
-            <option selected>Elegir...</option>
-            <option>Pregrado</option>
-            <option>Maestría</option>
-            <option>Doctorado</option>
-
-          </select>
-        </div>
-      </div>
-
-    <div class="container tres">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">#</th>
-                    <th scope="col" class="text-center">Codigo</th>
-                    <th scope="col" class="text-center">Apellidos y Nombres</th>
-                    <th scope="col" class="text-center">Seleccione</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for per in persona %}
-                <tr>
-                    <td class="text-center">{{ per.id }}</td>
-                    <td class="text-center">{{ per.id_persona}}</td>
-                    <td class="text-center">{{ per.nombre }}</td>
-
-
-                    <td>
-                        <div class="check text-center" id="check1">
-                            <input class="checkbox1" type="checkbox" name="persona_pk" id="checkbox1{{ per }}"
-                                           value="{{ per.pk }}">
-                            <label class="selec" for="checkbox1{{ per }}" >Seleccionar</label>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
-        <div class="text-center cuatro"> <button id="enviar" type="submit" class="btn btn-outline-primary imprimir">ENVIAR DATOS</button> </div>
-    </div>
-
-    </div>
-  </form>
-
-
+    </footer>
 {% endblock %}

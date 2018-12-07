@@ -1,3 +1,4 @@
+
 .check input[type="checkbox"]{
     display: none;
 }
@@ -49,42 +50,35 @@
 
 }
 .color {
-
     color: #3589AB  ;
     font-family: "Palatino", sans-serif;
-    font-size: 270%;
-    margin-top: 2%
-
-
+    font-size: 50px;
 }
 
-.uno {
- color: #213A80 ;
- font-family: "Palatino", sans-serif;
-padding-left: 40%;
-padding-top: 3%;
-font-size: 135%;
+.div_opc > select{
+    padding-right: 30px;
+    padding-left: 5px;
 
 }
-.dos
-{
-    padding-left: 40%;
-color: #213A80 ;
- font-family: "Palatino", sans-serif;
- font-size: 135%;
- padding-top: 3%;
+
+.div_opc > label {
+        font-size: 20px;
+        font-family: Calibri;
+
 }
-.f {
-    background: #CDCDDF  ;
-    margin-bottom: 2%;
+body {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-.tres {
-    padding-top: 8%;
+
+.box1 {
+    padding: 30px;
 }
-.cuatro {
-    padding-top: 2%
+.titulo {
+    background-color: white;
 }
-.cinco {
-  margin-right: 13%;
-  margin-left: 10%
+
+div > .label {
+    color: #3589AB;
+    font-family: "Palatino", sans-serif;
 }

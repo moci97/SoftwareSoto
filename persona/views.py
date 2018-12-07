@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 import pdfkit
 from django_pdfkit import PDFView
-from persona.models import Persona
+from persona.models import Persona, Universidad, Facultad, Especialidad, TipoPersona,Grado
 
 
 # Create your views here.
@@ -31,10 +31,6 @@ def validacion_login(request):
 
 
 def certificado(request):
-    personas = request.session['personas_pk']
-    print("=====================")
-    print(str(personas))
-    print("=====================")
     pdfkit.from_file('persona/certificado.html', 'persona/certificado.pdf')
     return render(request, 'persona/certificado.html')
 
@@ -45,6 +41,11 @@ class Certificado(PDFView):
     def get_context_data(self, **kwargs):
         context = super(Certificado, self).get_context_data(**kwargs)
         context['persona'] = Persona.objects.filter(pk__in=self.request.session['personas_pk'])
+        context['universidad'] = Universidad.objects.filter(pk__in=self.request.session['universidad_pk'])
+        context['facultad'] = Facultad.objects.filter(pk__in=self.request.session['facultad_pk'])
+        context['especialidad'] = Especialidad.objects.filter(pk__in=self.request.session['especialidad_pk'])
+        context['grado'] = Grado.objects.filter(pk__in=self.request.session['grado_pk'])
+
         return context
 
 
@@ -65,8 +66,18 @@ class GetPersonas(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(GetPersonas, self).get_context_data(**kwargs)
         context['persona'] = Persona.objects.all()
+        context['universidad'] = Universidad.objects.all()
+        context['facultad'] = Facultad.objects.all()
+        context['especialidad'] = Especialidad.objects.all()
+        context['tipo_persona'] = TipoPersona.objects.all()
+        context['grado'] = Grado.objects.all()
         return context
 
     def post(self, request):
         self.request.session['personas_pk'] = self.request.POST.getlist('persona_pk')
+        self.request.session['universidad_pk'] = self.request.POST['universidad_pk']
+        self.request.session['facultad_pk'] = self.request.POST.getlist('facultad_pk')
+        self.request.session['especialidad_pk'] = self.request.POST.getlist('especialidad_pk')
+        self.request.session['grado_pk'] = self.request.POST.getlist('grado_pk')
         return HttpResponseRedirect('/certificado/')
+

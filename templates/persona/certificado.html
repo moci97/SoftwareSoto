@@ -1,8 +1,9 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base2.html' %}
 
 {% block content %}
     {% load static %}
     {% csrf_token %}
+
     <link rel="stylesheet" href="{% static 'css/certificado.css' %}">
     {% for p in persona %}
         <form method="post">
@@ -10,13 +11,36 @@
             <div class="container caja-certificado">
                 <div class="row header-certificado">
                     <div class="col-3 text-center">
-                        <img src="{% static 'imagenes/logo-unfv.png' %}" alt="" class="logo-unfv img-fluid">
+                        {% for uni in universidad %}
+                            {% if uni.nomb_facultad == "Universidad Nacional de Ingenieria" %}
+                                <img class="logo-unfv img-fluid"
+                                     src="https://scontent.flim16-2.fna.fbcdn.net/v/t1.0-9/46507389_102891730735334_7347773279119081472_n.jpg?_nc_cat=110&_nc_ht=scontent.flim16-2.fna&oh=f2466d392a9a3b62908829dbb3509729&oe=5C7F6A32"
+                                     alt="Universidad Nacional de Ingenieria">
+                            {% elif uni.nomb_facultad == "Universidad Nacional Federico Villareal" %}
+                                <img src="{% static 'imagenes/logo-unfv.png' %}" alt="" class="logo-unfv img-fluid">
+                            {% elif uni.nomb_facultad == "Universidad Nacional Mayor de San Marcos" %}
+                                <img src=""
+                                     alt="Universidad Nacional Mayor de San Marcos"
+                                     class="logo-unfv img-fluid">
+                            {% elif uni.nomb_facultad == "Universidad Nacional Federico Villarreal" %}
+                                <img src="{% static 'imagenes/logo-unfv.png' %}" alt="" class="logo-unfv img-fluid">
+                            {% elif uni.nomb_facultad == "Universidad Nacional Federico Villarreal" %}
+                                <img src="{% static 'imagenes/logo-unfv.png' %}" alt="" class="logo-unfv img-fluid">
+                            {% elif uni.nomb_facultad == "Universidad Nacional Federico Villarreal" %}
+                                <img src="{% static 'imagenes/logo-unfv.png' %}" alt="" class="logo-unfv img-fluid">
+                            {% endif %}
+                        {% endfor %}
+
+
                     </div>
                     <div class="col-6 align-self-center">
-                        <p class="text-center u-nacional">Universidad Nacional</p>
-                        <p class="text-center federico">Federico Villarreal</p>
+                        {% for uni in universidad %}
+                            <p class="text-center federico">{{ uni.nomb_facultad }} </p>
+                        {% endfor %}
                         <hr class="certificado-hr">
-                        <p class="text-center lema">Profesionales Formando Profesionales</p>
+                        {% for facu in facultad %}
+                            <p class="text-center lema">{{ facu.nomb_uni }}</p>
+                        {% endfor %}
                     </div>
                     <div class="col-3 text-center align-self-center">
                         <img src="{% static 'imagenes/logo-fiis.jpg' %}" alt="">
@@ -34,35 +58,35 @@
                     </div>
                 </div>
                 <div class="row py-5 my-3">
-                    <div class="col text-justify certificado-contenido">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore
-                        consequatur similique, minima sunt velit inventore cupiditate. Minima velit possimus sed
-                        deserunt a repellat, delectus iste ullam doloribus! Quia, quibusdam at.Lorem ipsum dolor sit
-                        amet consectetur, adipisicing elit. Dolore consequatur similique, minima sunt velit inventore
-                        cupiditate. Minima velit possimus sed deserunt a repellat, delectus iste ullam doloribus! Quia,
-                        quibusdam at.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore consequatur
-                        similique, minima sunt velit inventore cupiditate. Minima velit possimus sed deserunt a
-                        repellat, delectus iste ullam doloribus! Quia, quibusdamMinima velit possimus sed deserunt a
-                        repellat, delectus iste ullam doloribus! Quia, quibusdam doloribus! at.
-                    </div>
+                    {% for uni in universidad %}
+                        <div class="col-12 text-justify certificado-contenido">El jefe de la oficina de recursos
+                            académicos y el Decano de la <b>
+                                {% for facu in facultad %}
+                                    {{ facu.nomb_uni }}
+                                {% endfor %}</b> de la <b>{{ uni.nomb_facultad }}</b> que suscriben que el estudiante
+                            ha aprobado las previas de los estudios de la carrera
+                                {% for esp in especialidad %}
+                                    {{ esp.nombre_esp }}
+                                {% endfor %}
+                            , de conformidad con la ley
+                            universitaria vigente,
+                            el estatuto universitario y el reglamento de grados y títulos de la
+                            <b>{{ uni.nomb_facultad }}</b>.<br>
+                            Por lo tanto
+                            Le expide el presente documento que lo certifica en el curso de Gestión del Conocimiento.
+                        </div>
+                    {% endfor %}
+
                 </div>
 
-               <!-- <div class="row">
-                    <div class="col-4 text-center">
-                        <hr class="hr-firma">
-                    </div>
-                    <div class="col-4">
-                    </div>
-                    <div class="col-4  text-center">
-                        <hr class="hr-firma">
-                    </div>
-                </div>-->
+
                 <div class="row">
                     <div class="col-4 text-center firma-persona">
-                        <div>Lorem ipsum dolor sit amet.</div>
+                        <div>Decano de la Facultad.</div>
                     </div>
                     <div class="col-4"></div>
                     <div class=" col-4  text-center firma-persona">
-                        <div>Lorem ipsum dolor sit amet.</div>
+                        <div>Director de Escuela.</div>
                     </div>
                 </div>
             </div>
